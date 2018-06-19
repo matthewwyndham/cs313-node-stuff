@@ -16,7 +16,7 @@ express()
     if (operator === "min") {result = lhs - rhs;}
     if (operator === "div") {result = lhs / rhs;}
     if (operator === "mul") {result = lhs * rhs;}
-    res.locals.query = result;
+    res.locals.result = result;
     res.render('pages/math');
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
