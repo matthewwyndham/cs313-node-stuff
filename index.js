@@ -53,7 +53,7 @@ express()
       else if (weight <= 13) {price = 352}
       else {price = -1}
     }
-    if (type === "First-Class Package Service&mdash;Retail") {
+    if (type === "First-Class Package Service-Retail") {
       if      (weight <=  1) {price = 350}
       else if (weight <=  2) {price = 350}
       else if (weight <=  3) {price = 350}
