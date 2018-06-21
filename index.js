@@ -22,7 +22,17 @@ express()
   .get('/postal_calc', function(req, res) {
     var weight = parseFloat(req.query.weight);
     var type = req.query.type;
-    var price = 0; // in cents
+    var price = getPrice(weight, type);
+    res.locals.weight = weight;
+    res.locals.type = type;
+    if (price != -1) {res.locals.price = "$" + String((price / 100).toFixed(2));}
+    else {res.locals.price = "Please enter a valid weight!"}
+    res.render('pages/postal_price');
+  })
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  
+function getPrice(weight, type) {
+  var price = 0; // in cents
     if (type === "Letters (Stamped)") {
       if      (weight <= 1) {price = 50}
       else if (weight <= 2) {price = 71}
@@ -69,11 +79,5 @@ express()
       else if (weight <= 13) {price = 550}
       else {price = -1}
     }
-    res.locals.weight = weight;
-    res.locals.type = type;
-    if (price != -1) {res.locals.price = "$" + String((price / 100).toFixed(2));}
-    else {res.locals.price = "Please enter a valid weight!"}
-    res.render('pages/postal_price');
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-  
+    return price;
+}
