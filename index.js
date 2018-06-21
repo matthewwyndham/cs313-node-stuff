@@ -22,10 +22,10 @@ express()
   .get('/postal_calc', function(req, res) {
     var weight = parseFloat(req.query.weight);
     var type = req.query.type;
-    var price = getPrice(weight, type);
+    var price = getPrice(weight, type); // in cents
     res.locals.weight = weight;
     res.locals.type = type;
-    if (price != -1) {res.locals.price = "$" + String((price / 100).toFixed(2));}
+    if (price != -1) {res.locals.price = "$" + String((price / 100).toFixed(2));} // convert to dollars
     else {res.locals.price = "Please enter a valid weight!"}
     res.render('pages/postal_price');
   })
