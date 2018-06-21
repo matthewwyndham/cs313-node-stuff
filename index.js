@@ -71,7 +71,7 @@ express()
     }
     res.locals.weight = weight;
     res.locals.type = type;
-    res.locals.price = "$" + String((price / 10).toFixed(2));
+    res.locals.price = "$" + String((price / 100).toFixed(2));
     res.render('pages/postal_price');
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
